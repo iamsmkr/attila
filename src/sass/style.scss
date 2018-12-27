@@ -224,7 +224,7 @@ code, tt {
 	font-size: 0.75em;
 	white-space: pre;
 	background: $color-gray-98;
-  border: 1px solid $color-gray-90;
+  //border: 1px solid $color-gray-90;
 	top: -2px;
 }
 
@@ -995,10 +995,11 @@ img[src$="#full"] {
 	z-index: 10;
 	display: block;
 	margin-bottom: 1.334em;
-	font-family: 'Fira Sans', sans-serif;
-	font-size: 0.75em;
+	font-family: 'Karla', sans-serif;
+	font-size: 0.9em;
 	font-weight: 400;
 	line-height: 1.334em;
+    letter-spacing: 2px;
   color: $color-blue-60;
 }
 .has-cover .post-meta {
@@ -1124,7 +1125,7 @@ img[src$="#full"] {
 	float: left;
 	width: 5em;
 	height: 5em;
-	margin: -0.5em 0 0 1.5em;
+	margin-top: 3.1em;
 	overflow: hidden;
 	border-radius: 10em;
 	box-sizing: border-box;
@@ -1142,13 +1143,16 @@ img[src$="#full"] {
 	box-sizing: border-box;
 }
 .post-author-bio {
-	padding-left: 10em;
+  padding-left: 9em;
   font-size: 0.75em;
   line-height: 1.334em;
 
   @media only screen and (max-width: 480px) {
     padding-left: 0;
   }
+}
+.post-author-title {
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 .post-author-name {
 	margin: 0;
