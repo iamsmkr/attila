@@ -604,12 +604,12 @@ img[src$="#full"] {
 	height: 1.5em;
 	margin-bottom: 1em;
 	padding: 0.5em 1.25em;
-	border: 1px solid $color-blue-80;
+//	border: 1px solid $color-blue-80;
 	font-family: 'Fira Sans', sans-serif;
-	font-size: 0.75em;
+	font-size: 1.6em;
 	line-height: 1.667em;
 	text-shadow: none;
-	color: $color-blue-60;
+//	color: $color-blue-60;
 	cursor: pointer;
 	background: $color-white;
 	transition: color,border-color ease 0.3s;
