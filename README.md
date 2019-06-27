@@ -54,7 +54,7 @@ Build Grunt project:
 	grunt build
 
 ## Deploy
-Before you can add this theme to your ghost blog platform, you would need to build a zip archieve of all the content listed under this repository leaving `node_modules` directory. Once done building this zip archieve, add it to your ghost blog via cms.
+Before you can add this theme to your ghost blog, you would need to build a zip archieve of all the content listed under this repository leaving `node_modules` directory. Once done building this zip archieve, add it to your ghost blog via cms.
 
 ## Copyright & License
 
