@@ -53,6 +53,9 @@ Build Grunt project:
 
 	grunt build
 
+## Deploy
+Before you can add this theme to your ghost blog platform, you would need to build a zip archieve of all the content listed under this repository leaving `node_modules` directory. Once done building this zip archieve, add it to your ghost blog via cms.
+
 ## Copyright & License
 
 Copyright (C) 2015-2018 Peter Amende - Released under the [MIT License](https://github.com/zutrinken/attila/blob/master/LICENSE).
