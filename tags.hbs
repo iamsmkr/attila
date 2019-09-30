@@ -1,9 +1,11 @@
 <canvas id="word_cloud" class="word_cloud"></canvas>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
-<script src="https://pulipulichen.github.io/blogger/posts/2016/11/r-text-mining/wordcloud2.js"></script>
+<script src="/src/js/libs/jquery-1.11.3.min.js"></script>
+<script src="/node_modules/wordcloud/src/wordcloud2.js"></script>
+
 <script>
     var canvas = document.getElementById("word_cloud");
+    var baseFont = '30';
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
     // Get all tags data API
@@ -18,10 +20,10 @@
         var options = { 
             list : wordCloudData,      
             weightFactor: function (size) {
-                return (size === 1) ? '30' : Math.pow(size, 6) * document.getElementById('word_cloud').offsetWidth / 1024;
+                return (size === 1) ? baseFont : 10 * size * 2;
             },
             rotateRatio: 0,
-            color: '#343f44',
+            color: '#7e868e',
             click: function(item) {
                 window.location.href = "/tag/" + item[0];
             }

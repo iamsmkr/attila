@@ -465,6 +465,13 @@ img[src$="#full"] {
 	content: '';
 	background: $color-gray-90;
 }
+#blog-header:before {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	margin-left: -2em;
+	content: 'Posts: ' attr(data-name);
+}
 #blog-header.has-cover {
 	padding: 9em 0 10em;
 	background: $color-black;
@@ -1477,6 +1484,15 @@ img[src$="#full"] {
 }
 .paged .extra-pagination {
 	display: block;
+}
+
+.tags-container{
+	display: flex;
+	justify-content: center;
+	margin-top: 0.5rem;
+	.tag-heading{
+		font-weight: 600;
+	}
 }
 
 /* ==========================================================================
