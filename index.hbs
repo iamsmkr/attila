@@ -1,26 +1,25 @@
 {{!< default}}
-<header id="blog-header"{{#if @blog.cover_image}} class="has-cover"{{/if}}>
+
+<header id="blog-header">
 	<div class="inner">
 		<nav id="navigation">
-			{{#if @blog.logo}}
 			<span class="blog-logo">
-				<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{t "Blog Logo"}}" /></a>
+				<a href="http://google.com">	</a>
 			</span>
-			{{/if}}
-			{{#if @blog.navigation}}
 			<span id="menu-button" class="nav-button">
-				<!--<a class="menu-button"><i class="ic ic-menu"></i> {{t "Menu"}}</a>-->
+				<!--<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>-->
 				<a class="menu-button"><i class="fas fa-bars"></i></a>
 			</span>
-			{{/if}}
 		</nav>
 		<h1 class="blog-name">{{@blog.title}}</h1>
-		{{#if @blog.description}}
 		<span class="blog-description">{{@blog.description}}</span>
-		{{/if}}
-		{{#if @blog.cover_image}}
-		<div class="blog-cover cover" style="background-image: url('{{img_url @blog.cover_image}}');"></div>
-		{{/if}}
+		{{#get "posts"}}
+			<div>
+				<span class="post-meta">
+					<span>Posts: {{posts.length}}</span> | <a href="/tags/">Tags</a>
+				</span>
+			</div>
+		{{/get}}
 	</div>
 </header>
 
