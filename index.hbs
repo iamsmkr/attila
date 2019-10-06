@@ -1,29 +1,32 @@
 {{!< default}}
-<header id="blog-header"{{#if @blog.cover_image}} class="has-cover"{{/if}}>
-	<div class="inner">
-		<nav id="navigation">
-			{{#if @blog.logo}}
-			<span class="blog-logo">
-				<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{t "Blog Logo"}}" /></a>
-			</span>
-			{{/if}}
-			{{#if @blog.navigation}}
-			<span id="menu-button" class="nav-button">
-				<!--<a class="menu-button"><i class="ic ic-menu"></i> {{t "Menu"}}</a>-->
-				<a class="menu-button"><i class="fas fa-bars"></i></a>
-			</span>
-			{{/if}}
-		</nav>
-		<h1 class="blog-name">{{@blog.title}}</h1>
-		{{#if @blog.description}}
-		<span class="blog-description">{{@blog.description}}</span>
-		{{/if}}
-		{{#if @blog.cover_image}}
-		<div class="blog-cover cover" style="background-image: url('{{img_url @blog.cover_image}}');"></div>
-		{{/if}}
-	</div>
-</header>
-
+{{#get "posts"}}
+	<header id="blog-header" {{#if @blog.cover_image}} class="has-cover"{{/if}} data-name="{{posts.length}}">
+		<div class="inner">
+			<nav id="navigation">
+				<span class="blog-logo">
+					<a href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="{{t "Blog Logo"}}" /></a>
+				</span>
+				<span id="menu-button" class="nav-button">
+					<!--<a class="menu-button"><i class="ic ic-menu"></i> Menu</a>-->
+					<a class="menu-button"><i class="fas fa-bars"></i></a>
+				</span>
+			</nav>
+			<h1 class="blog-name">{{@blog.title}}</h1>
+			<span class="blog-description">{{@blog.description}}</span>
+		</div>
+	</header>
+{{/get}}
+<div class="tags-container">
+	{{#get "tags" limit='all' include='count.posts' order='count.posts desc'}}
+		<span class="">Tags:&nbsp;</span>
+		<div class="tags-wrapper">
+			{{#foreach tags limit="2"}}
+				<a href="/tag/{{name}}/" class="post-meta">{{name}},</a>
+			{{/foreach}}
+			<a class="post-meta" href="/tags/">et al.</a>
+		</div>
+	{{/get}}
+</div>
 <div id="index" class="container">
 
 	<main class="content" role="main">
