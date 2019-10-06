@@ -470,7 +470,9 @@ img[src$="#full"] {
 	left: 50%;
 	bottom: 0;
 	margin-left: -2em;
+	margin-bottom: 7px;
 	content: 'Posts: ' attr(data-name);
+	font-family: monospace;
 }
 #blog-header.has-cover {
 	padding: 9em 0 10em;
@@ -1491,7 +1493,7 @@ img[src$="#full"] {
 .tags-container{
 	display: flex;
 	justify-content: center;
-	margin-top: 0.5rem;
+	margin-top: 7px;
 	.tags-wrapper{
 		display: flex;
 		margin-left: 1.1rem;

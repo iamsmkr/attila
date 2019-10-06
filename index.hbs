@@ -18,7 +18,7 @@
 {{/get}}
 <div class="tags-container">
 	{{#get "tags" limit='all' include='count.posts' order='count.posts desc'}}
-		<span class="">Tags:&nbsp;</span>
+		<span class="" style="font-family: monospace;">Tags:&nbsp;</span>
 		<div class="tags-wrapper">
 			{{#foreach tags limit="2"}}
 				<a href="/tag/{{name}}/" class="post-meta">{{name}},</a>
