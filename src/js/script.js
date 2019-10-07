@@ -142,4 +142,9 @@ jQuery(function($) {
 			$(this).parent().addClass('activated');
 		});
 	}
+
+	$('#blog-header').removeClass('hide-posts');
+	if(window.location.pathname !== '/blogs/technology/'){
+		$('#blog-header').addClass('hide-posts');
+	}
 });

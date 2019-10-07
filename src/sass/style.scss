@@ -474,6 +474,15 @@ img[src$="#full"] {
 	content: 'Posts: ' attr(data-name);
 	font-family: monospace;
 }
+#blog-header.hide-posts:before {
+	position: absolute;
+	left: 50%;
+	bottom: 0;
+	margin-left: -2em;
+	margin-bottom: 7px;
+	content: '';
+	font-family: monospace;
+}
 #blog-header.has-cover {
 	padding: 9em 0 10em;
 	background: $color-black;
