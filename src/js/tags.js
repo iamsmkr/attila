@@ -5,7 +5,7 @@ if(canvas){
     canvas.height = window.innerHeight;
     // Get all tags data API
     wordCloudData = [];
-    $.get('/ghost/api/canary/admin/tags/?limit=all&include=count.posts&client_id=ghost-frontend&client_secret=9498276943ce').done(function (data){
+    $.get('/blogs/technology/ghost/api/v2/content/tags/?include=count.posts&key=25fdd232f863efe25e04441a19').done(function (data){
         for(var i=0 ;i<data.tags.length;i++){
             var temp = [];
             temp.push(data.tags[i].name);
