@@ -3,6 +3,8 @@ var baseFont = '30';
 if(canvas){
     canvas.width  = window.innerWidth;
     canvas.height = window.innerHeight;
+    document.body.scrollTop = 0;
+    document.body.style.overflow = 'hidden'; 
     // Get all tags data API
     wordCloudData = [];
     $.get('/blogs/technology/ghost/api/v2/content/tags/?include=count.posts&key=25fdd232f863efe25e04441a19').done(function (data){
@@ -17,6 +19,7 @@ if(canvas){
             weightFactor: function (size) {
                 return (size === 1) ? baseFont : 10 * size * 2;
             },
+            fontWeight: 'bold',
             fontFamily: 'Cardo',
             rotateRatio: 0,
             color: '#7e868e',
