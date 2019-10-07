@@ -1,4 +1,7 @@
 .DS_store
+assets/
+assets/css/
+assets/js/
 node_modules
 package-lock.json
 *.zip

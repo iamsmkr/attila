@@ -21,7 +21,7 @@ if(canvas){
             rotateRatio: 0,
             color: '#7e868e',
             click: function(item) {
-                window.location.href = "./tag/" + item[0];
+                window.location.href = "./../tag/" + item[0];
             }
         }
         WordCloud(document.getElementById('word_cloud'), options);
