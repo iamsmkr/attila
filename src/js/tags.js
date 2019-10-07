@@ -5,7 +5,7 @@ if(canvas){
     canvas.height = window.innerHeight;
     // Get all tags data API
     wordCloudData = [];
-    $.get('/ghost/api/canary/admin/tags/?limit=all&include=count.posts').done(function (data){
+    $.get('/ghost/api/canary/admin/tags/?limit=all&include=count.posts&client_id=ghost-frontend&client_secret=9498276943ce').done(function (data){
         for(var i=0 ;i<data.tags.length;i++){
             var temp = [];
             temp.push(data.tags[i].name);
@@ -21,7 +21,7 @@ if(canvas){
             rotateRatio: 0,
             color: '#7e868e',
             click: function(item) {
-                window.location.href = "/tag/" + item[0];
+                window.location.href = "./tag/" + item[0];
             }
         }
         WordCloud(document.getElementById('word_cloud'), options);
