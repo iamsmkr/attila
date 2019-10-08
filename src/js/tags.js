@@ -1,8 +1,12 @@
-var canvas = document.getElementById("word_cloud");
+var $canvasContainer = $('#canvas-container');
+var $canvas = document.getElementById("word_cloud");
+var $box = $('<div id="box"/>');
 var baseFont = '30';
-if(canvas){
-    canvas.width  = window.innerWidth;
-    canvas.height = window.innerHeight;
+$canvasContainer.append($box);
+
+if($canvas){
+    $canvas.width  = window.innerWidth;
+    $canvas.height = window.innerHeight;
     document.body.scrollTop = 0;
     document.body.style.overflow = 'hidden'; 
     // Get all tags data API
@@ -25,6 +29,17 @@ if(canvas){
             color: '#7e868e',
             click: function(item) {
                 window.location.href = "./../tag/" + item[0];
+            },
+            hover: function(item, dimension, event){
+                if (!dimension) {
+                    return;
+                }
+                $box.css({
+                    left: dimension.x + 'px',
+                    top: dimension.y + 'px',
+                    width: dimension.w + 'px',
+                    height: dimension.h + 'px'
+                });
             }
         }
         WordCloud(document.getElementById('word_cloud'), options);
