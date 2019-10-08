@@ -1,8 +1,5 @@
-var $canvasContainer = $('#canvas-container');
 var $canvas = document.getElementById("word_cloud");
-var $box = $('<div id="box"/>');
 var baseFont = '30';
-$canvasContainer.append($box);
 
 if($canvas){
     $canvas.width  = window.innerWidth;
@@ -30,17 +27,6 @@ if($canvas){
             click: function(item) {
                 window.location.href = "./../tag/" + item[0];
             },
-            hover: function(item, dimension, event){
-                if (!dimension) {
-                    return;
-                }
-                $box.css({
-                    left: dimension.x + 'px',
-                    top: dimension.y + 'px',
-                    width: dimension.w + 'px',
-                    height: dimension.h + 'px'
-                });
-            }
         }
         WordCloud(document.getElementById('word_cloud'), options);
     }).fail(function (err){
