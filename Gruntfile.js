@@ -81,6 +81,24 @@ module.exports = function(grunt) {
                 files: '<%=  config.cssSrcDir %>/**/*.scss',
                 tasks: ['sass:dev','copy:dev','postcss:dev']
             }
+        },
+        zip: {
+            dist: {
+              src: [
+                '**',
+                '!node_modules',
+                '!node_modules/**',
+                '!src',
+                '!src/**',
+                '!dist',
+                '!dist/**',
+                '!.git',
+                '!.gitignore',
+                '!Gruntfile.js',
+                '!package-lock.json'
+              ],
+              dest: `dist/${require('./package.json').name}.zip`
+            }
         }
     });
 
