@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         copy: {
 	        dev: {
                 files: [{
-	                dest: 'assets/font/',
+	                dest: '../dist/font/',
 	                src: '*',
                     cwd: 'src/font/',
                     expand: true
@@ -23,17 +23,26 @@ module.exports = function(grunt) {
 	        },
 	        dist: {
                 files: [{
-	                dest: 'assets/font/',
+	                dest: '../dist/font/',
 	                src: '*',
                     cwd: 'src/font/',
                     expand: true
                 }]		        
-	        } 
+            },
+            zip: {
+                files: [{
+                    cwd: '../dist',
+                    src: '**/*',
+                    dest: 'assets/',
+                    expand: true
+                }]
+            }
         },
         clean: {
             dev: ['dev'],
             dist: ['dist'],
-            all: ['dev', 'dist']
+            all: ['dev', 'dist'],
+            zip: ['assets']
         },
         sass: {
             dev: {
@@ -42,7 +51,7 @@ module.exports = function(grunt) {
                     sourceMaps: true
                 },
                 files: {
-                    'assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    '../dist/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             },
             dist: {
@@ -50,7 +59,7 @@ module.exports = function(grunt) {
                     outputStyle: 'compressed'
                 },
                 files: {
-                    'assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    '../dist/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             }
         },
@@ -62,17 +71,17 @@ module.exports = function(grunt) {
                 ]
             },
             dev: {
-                src: 'assets/<%=  config.cssTargetDir %>/*.css'
+                src: '../dist/<%=  config.cssTargetDir %>/*.css'
             },
             dist: {
-                src: 'assets/<%=  config.cssTargetDir %>/*.css'
+                src: '../dist/<%=  config.cssTargetDir %>/*.css'
             }
         },
 		uglify: {
 			js: {
 				files: {
-                    'assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
-                    'assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
+                    '../dist/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
+                    '../dist/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
 				}
 			}
 		},
@@ -97,7 +106,7 @@ module.exports = function(grunt) {
                 '!Gruntfile.js',
                 '!package-lock.json'
               ],
-              dest: `dist/${require('./package.json').name}.zip`
+              dest: `../build/${require('./package.json').name}.zip`
             }
         }
     });
@@ -114,5 +123,11 @@ module.exports = function(grunt) {
         'copy:dev',
         'uglify',
         'watch'
+    ]);
+    grunt.registerTask('buildzip', [
+        'build',
+        'copy:zip',
+        'zip',
+        'clean:zip'
     ]);
 };
