@@ -15,7 +15,7 @@ module.exports = function(grunt) {
         copy: {
 	        dev: {
                 files: [{
-	                dest: '../dist/font/',
+	                dest: '../stage/attila/assets/font/',
 	                src: '*',
                     cwd: 'src/font/',
                     expand: true
@@ -23,15 +23,30 @@ module.exports = function(grunt) {
 	        },
 	        dist: {
                 files: [{
-	                dest: '../dist/font/',
+	                dest: '../stage/attila/assets/font/',
 	                src: '*',
                     cwd: 'src/font/',
                     expand: true
                 }]		        
             },
+            stage: {
+                files: [{
+	                dest: '../stage/attila/',
+	                src: ['**/*',
+                        '!node_modules/**',
+                        '!src',
+                        '!src/**',
+                        '!.git',
+                        '!.gitignore',
+                        '!Gruntfile.js',
+                        '!package-lock.json'],
+                    cwd: '.',
+                    expand: true
+                }]	
+            },
             zip: {
                 files: [{
-                    cwd: '../dist',
+                    cwd: '../stage/attila/assets',
                     src: '**/*',
                     dest: 'assets/',
                     expand: true
@@ -51,7 +66,7 @@ module.exports = function(grunt) {
                     sourceMaps: true
                 },
                 files: {
-                    '../dist/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    '../stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             },
             dist: {
@@ -59,7 +74,7 @@ module.exports = function(grunt) {
                     outputStyle: 'compressed'
                 },
                 files: {
-                    '../dist/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    '../stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             }
         },
@@ -71,17 +86,17 @@ module.exports = function(grunt) {
                 ]
             },
             dev: {
-                src: '../dist/<%=  config.cssTargetDir %>/*.css'
+                src: '../stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             },
             dist: {
-                src: '../dist/<%=  config.cssTargetDir %>/*.css'
+                src: '../stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             }
         },
 		uglify: {
 			js: {
 				files: {
-                    '../dist/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
-                    '../dist/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
+                    '../stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
+                    '../stage/attila/assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
 				}
 			}
 		},
@@ -106,15 +121,16 @@ module.exports = function(grunt) {
                 '!Gruntfile.js',
                 '!package-lock.json'
               ],
-              dest: `../build/${require('./package.json').name}.zip`
+              dest: `../dist/${require('./package.json').name}.zip`
             }
         }
     });
 
-    grunt.registerTask('build', [
+    grunt.registerTask('stage', [
         'sass:dist',
         'postcss:dist',
         'copy:dist',
+        'copy:stage',
         'uglify'
     ]);
     grunt.registerTask('default', [
@@ -124,8 +140,8 @@ module.exports = function(grunt) {
         'uglify',
         'watch'
     ]);
-    grunt.registerTask('buildzip', [
-        'build',
+    grunt.registerTask('stagezip', [
+        'stage',
         'copy:zip',
         'zip',
         'clean:zip'
