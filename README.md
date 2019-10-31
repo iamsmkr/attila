@@ -2,7 +2,7 @@
 
 A content focused responsive theme for [Ghost](http://github.com/tryghost/ghost/).
 
-**Notes:** This project is forked from `zutrinken/attila`. However, it is now maintained personally for my blog hosted at http://www.shivamkapoor.com/blogs/technology/. It means that this repository doesn't resonate with the original repository (Not even the project structuring).
+**Notes:** This project is forked from `zutrinken/attila`. However, it is now maintained personally for my blog hosted at http://www.shivamkapoor.com/blogs/technology/. It means that this repository doesn't resonate with the original repository including the project structuring and the grunt tasks.
 
 ## Demo
 
