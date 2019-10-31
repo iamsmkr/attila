@@ -41,17 +41,17 @@ To enable [Disqus](https://disqus.com/) comments go to your blogs code injection
 
 ## Develop/Deploy
 
-1. Install [Grunt](http://gruntjs.com/getting-started/)
+### 1. Install [Grunt](http://gruntjs.com/getting-started/)
 ```
 npm install -g grunt-cli
 ```
 
-2. Install Dependencies
+### 2. Install Dependencies
 ```
 npm install
 ```
 	
-3. Stage/Test Project
+### 3. Stage/Test Project
 ```
 grunt stage
 ```
@@ -59,14 +59,14 @@ grunt stage
 This step create an unarchived version of the theme under `stage/attila`. The softlink to which could be created under ghost installation directory `ghost/content/theme` for developement and testing purposes.
 
 
-4. Build Project
+### 4. Build Project
 ```
 grunt build
 ```
 
 This step creates a distribution zip.
 
-5. Deploy 
+### 5. Deploy 
 Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
 ## Copyright & License
