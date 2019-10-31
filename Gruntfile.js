@@ -7,46 +7,67 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         config: {
-            'cssSrcDir': 'assets/sass',
+            'cssSrcDir': 'src/assets/sass',
             'cssTargetDir': 'css',
-            'jsSrcDir': 'assets/js',
+            'jsSrcDir': 'src/assets/js',
             'jsTargetDir': 'js'
         },
         copy: {
 	        dev: {
                 files: [{
-	                dest: '../stage/attila/assets/font/',
+	                dest: './stage/attila/assets/font/',
 	                src: '*',
-                    cwd: 'assets/font/',
+                    cwd: 'src/assets/font/',
                     expand: true
                 }]
 	        },
 	        dist: {
                 files: [{
-	                dest: '../stage/attila/assets/font/',
+	                dest: './stage/attila/assets/font/',
 	                src: '*',
-                    cwd: 'assets/font/',
+                    cwd: 'src/assets/font/',
                     expand: true
                 }]		        
             },
             stage: {
                 files: [{
-	                dest: '../stage/attila/',
-	                src: ['**/*',
+	                dest: './stage/attila/',
+	                src: ['**/*.hbs',
                         '!node_modules/**',
                         '!assets',
+                        '!src/',
                         '!assets/**',
                         '!.git',
                         '!.gitignore',
                         '!Gruntfile.js',
+                        '!README.md',
+                        '!package.json',
+                        '!LICENSE',
                         '!package-lock.json'],
-                    cwd: '.',
+                    cwd: 'src/',
+                    expand: true
+                },
+                {
+	                dest: './stage/attila/',
+                    src: ['**/*.json',
+                        '!node_modules/**',
+                        '!assets',
+                        '!src/',
+                        '!assets/**',
+                        '!.git',
+                        '!.gitignore',
+                        '!Gruntfile.js',
+                        '!README.md',
+                        '!package.json',
+                        '!LICENSE',
+                        '!package-lock.json'],
+                    cwd: 'src/',
                     expand: true
                 }]	
             },
             zip: {
                 files: [{
-                    cwd: '../stage/attila/assets',
+                    cwd: './stage/attila/assets',
                     src: '**/*',
                     dest: 'assets/',
                     expand: true
@@ -55,8 +76,9 @@ module.exports = function(grunt) {
         },
         clean: {
             dev: ['dev'],
+            stage: ['stage'],
             dist: ['dist'],
-            all: ['dev', 'dist'],
+            all: ['dev', 'stage', 'dist'],
             zip: ['assets']
         },
         sass: {
@@ -66,7 +88,7 @@ module.exports = function(grunt) {
                     sourceMaps: true
                 },
                 files: {
-                    '../stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    './stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             },
             dist: {
@@ -74,7 +96,7 @@ module.exports = function(grunt) {
                     outputStyle: 'compressed'
                 },
                 files: {
-                    '../stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    './stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             }
         },
@@ -86,17 +108,17 @@ module.exports = function(grunt) {
                 ]
             },
             dev: {
-                src: '../stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
+                src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             },
             dist: {
-                src: '../stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
+                src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             }
         },
 		uglify: {
 			js: {
 				files: {
-                    '../stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
-                    '../stage/attila/assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
+                    './stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
+                    './stage/attila/assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
 				}
 			}
 		},
@@ -127,6 +149,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('stage', [
+        'clean:all',
         'sass:dist',
         'postcss:dist',
         'copy:dist',
