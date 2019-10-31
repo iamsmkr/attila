@@ -8,11 +8,13 @@ if($canvas){
     document.body.style.overflow = 'hidden'; 
     // Get all tags data API
     wordCloudData = [];
+    name_slug_map = {};
     $.get('/blogs/technology/ghost/api/v2/content/tags/?include=count.posts&key=25fdd232f863efe25e04441a19').done(function (data){
         for(var i=0 ;i<data.tags.length;i++){
             var temp = [];
             temp.push(data.tags[i].name);
             temp.push(data.tags[i].count.posts).toString();
+            name_slug_map[data.tags[i].name] = data.tags[i].slug;
             wordCloudData.push(temp);
         };
         var options = { 
@@ -25,7 +27,7 @@ if($canvas){
             rotateRatio: 0,
             color: '#7e868e',
             click: function(item) {
-                window.location.href = "./../tag/" + item[0];
+                window.location.href = "./../tag/" + name_slug_map[item[0]];
             },
         }
         WordCloud(document.getElementById('word_cloud'), options);
