@@ -39,7 +39,7 @@ A content focused responsive theme for [Ghost](http://github.com/tryghost/ghost/
 
 To enable [Disqus](https://disqus.com/) comments go to your blogs code injection settings and add `<script>var disqus = 'YOUR_DISQUS_SHORTNAME';</script>` to your blog header.
 
-## Development
+## Develop/ Deploy
 
 1. Install [Grunt](http://gruntjs.com/getting-started/)
 ```
