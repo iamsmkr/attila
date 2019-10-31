@@ -2,6 +2,8 @@
 
 A content focused responsive theme for [Ghost](http://github.com/tryghost/ghost/).
 
+**Notes:** This project is forked from `zutrinken/attila`. However, it is now maintained personally for my blog hosted at http://www.shivamkapoor.com/blogs/technology/. It means that this repository doesn't resonate with the original repository (Not even the project structuring).
+
 ## Demo
 
 * [Blog](http://attila.zutrinken.com/)
@@ -39,22 +41,35 @@ A content focused responsive theme for [Ghost](http://github.com/tryghost/ghost/
 
 To enable [Disqus](https://disqus.com/) comments go to your blogs code injection settings and add `<script>var disqus = 'YOUR_DISQUS_SHORTNAME';</script>` to your blog header.
 
-## Development
+## Develop/Deploy
 
-Install [Grunt](http://gruntjs.com/getting-started/):
+### 1. Install [Grunt](http://gruntjs.com/getting-started/)
+```
+npm install -g grunt-cli
+```
 
-	npm install -g grunt-cli
+### 2. Install Dependencies
+```
+npm install
+```
+	
+### 3. Stage/Test Project
+```
+grunt stage
+```
 
-Install Grunt dependencies:
+This step create an unarchived version of the theme under `stage/attila`. The softlink to which could be created under ghost installation directory `ghost/content/theme` for developement and testing purposes.
 
-	npm install
 
-Build Grunt project:
+### 4. Build Project
+```
+grunt build
+```
 
-	grunt build
+This step creates a distribution zip.
 
-## Deploy
-Before you can add this theme to your ghost blog, you would need to build a zip archieve of all the content listed under this repository leaving `node_modules` directory. Once done building this zip archieve, add it to your ghost blog via CMS.
+### 5. Deploy 
+Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
 ## Copyright & License
 
