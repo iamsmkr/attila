@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     'use strict';
     require('load-grunt-tasks')(grunt, {
         pattern: ['grunt-*']
@@ -7,33 +7,76 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         config: {
-            'cssSrcDir': 'src/sass',
+            'cssSrcDir': 'src/assets/sass',
             'cssTargetDir': 'css',
-            'jsSrcDir': 'src/js',
+            'jsSrcDir': 'src/assets/js',
             'jsTargetDir': 'js'
         },
         copy: {
-	        dev: {
+            dev: {
                 files: [{
-	                dest: 'assets/font/',
-	                src: '*',
-                    cwd: 'src/font/',
+                    dest: './stage/attila/assets/font/',
+                    src: '*',
+                    cwd: 'src/assets/font/',
                     expand: true
                 }]
-	        },
-	        dist: {
+            },
+            stage: {
                 files: [{
-	                dest: 'assets/font/',
-	                src: '*',
-                    cwd: 'src/font/',
+                    dest: './stage/attila/assets/font/',
+                    src: '*',
+                    cwd: 'src/assets/font/',
                     expand: true
-                }]		        
-	        } 
+                },
+                {
+                    dest: './stage/attila/',
+                    src: ['**/*.hbs',
+                        '!node_modules/**',
+                        '!assets',
+                        '!src/',
+                        '!assets/**',
+                        '!.git',
+                        '!.gitignore',
+                        '!Gruntfile.js',
+                        '!README.md',
+                        '!package.json',
+                        '!LICENSE',
+                        '!package-lock.json'],
+                    cwd: 'src/',
+                    expand: true
+                },
+                {
+                    dest: './stage/attila/',
+                    src: ['**/*.json',
+                        '!node_modules/**',
+                        '!assets',
+                        '!src/',
+                        '!assets/**',
+                        '!.git',
+                        '!.gitignore',
+                        '!Gruntfile.js',
+                        '!README.md',
+                        '!package.json',
+                        '!LICENSE',
+                        '!package-lock.json'],
+                    cwd: 'src/',
+                    expand: true
+                }]
+            },
+            zip: {
+                files: [{
+                    cwd: './stage/attila/assets',
+                    src: '**/*',
+                    dest: 'assets/',
+                    expand: true
+                }]
+            }
         },
         clean: {
             dev: ['dev'],
-            dist: ['dist'],
-            all: ['dev', 'dist']
+            stage: ['stage'],
+            build: ['build'],
+            all: ['dev', 'stage', 'build']
         },
         sass: {
             dev: {
@@ -42,15 +85,15 @@ module.exports = function(grunt) {
                     sourceMaps: true
                 },
                 files: {
-                    'assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    './stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             },
-            dist: {
+            stage: {
                 options: {
                     outputStyle: 'compressed'
                 },
                 files: {
-                    'assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
+                    './stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             }
         },
@@ -62,50 +105,55 @@ module.exports = function(grunt) {
                 ]
             },
             dev: {
-                src: 'assets/<%=  config.cssTargetDir %>/*.css'
+                src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             },
-            dist: {
-                src: 'assets/<%=  config.cssTargetDir %>/*.css'
+            stage: {
+                src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             }
         },
-		uglify: {
-			js: {
-				files: {
-                    'assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
-                    'assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
-				}
-			}
-		},
+        uglify: {
+            js: {
+                files: {
+                    './stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js', '<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
+                    './stage/attila/assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
+                }
+            }
+        },
         watch: {
             css: {
                 files: '<%=  config.cssSrcDir %>/**/*.scss',
-                tasks: ['sass:dev','copy:dev','postcss:dev']
+                tasks: ['sass:dev', 'copy:dev', 'postcss:dev']
             }
         },
         zip: {
-            dist: {
-              src: [
-                '**',
-                '!node_modules',
-                '!node_modules/**',
-                '!src',
-                '!src/**',
-                '!dist',
-                '!dist/**',
-                '!.git',
-                '!.gitignore',
-                '!Gruntfile.js',
-                '!package-lock.json'
-              ],
-              dest: `dist/${require('./package.json').name}.zip`
+            build: {
+                cwd: 'stage/',
+                src: [
+                    '**',
+                    '!node_modules',
+                    '!node_modules/**',
+                    '!src',
+                    '!src/**',
+                    '!build',
+                    '!build/**',
+                    '!.git',
+                    '!.gitignore',
+                    '!Gruntfile.js',
+                    '!package-lock.json',
+                    '!README.md',
+                    '!package.json',
+                    '!LICENSE'
+                ],
+                dest: `./build/${require('./package.json').name}.zip`
             }
         }
     });
 
-    grunt.registerTask('build', [
-        'sass:dist',
-        'postcss:dist',
-        'copy:dist',
+    grunt.registerTask('stage', [
+        'clean:all',
+        'sass:stage',
+        'postcss:stage',
+        'copy:stage',
         'uglify'
     ]);
     grunt.registerTask('default', [
@@ -114,5 +162,9 @@ module.exports = function(grunt) {
         'copy:dev',
         'uglify',
         'watch'
+    ]);
+    grunt.registerTask('build', [
+        'stage',
+        'zip'
     ]);
 };
