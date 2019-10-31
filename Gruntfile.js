@@ -7,9 +7,9 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         config: {
-            'cssSrcDir': 'src/sass',
+            'cssSrcDir': 'assets/sass',
             'cssTargetDir': 'css',
-            'jsSrcDir': 'src/js',
+            'jsSrcDir': 'assets/js',
             'jsTargetDir': 'js'
         },
         copy: {
@@ -17,7 +17,7 @@ module.exports = function(grunt) {
                 files: [{
 	                dest: '../stage/attila/assets/font/',
 	                src: '*',
-                    cwd: 'src/font/',
+                    cwd: 'assets/font/',
                     expand: true
                 }]
 	        },
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
                 files: [{
 	                dest: '../stage/attila/assets/font/',
 	                src: '*',
-                    cwd: 'src/font/',
+                    cwd: 'assets/font/',
                     expand: true
                 }]		        
             },
@@ -34,8 +34,8 @@ module.exports = function(grunt) {
 	                dest: '../stage/attila/',
 	                src: ['**/*',
                         '!node_modules/**',
-                        '!src',
-                        '!src/**',
+                        '!assets',
+                        '!assets/**',
                         '!.git',
                         '!.gitignore',
                         '!Gruntfile.js',
