@@ -64,6 +64,8 @@ This step create an unarchived version of the theme under `stage/attila`. The so
 grunt build
 ```
 
+This step creates a distribution zip.
+
 5. Deploy 
 Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
