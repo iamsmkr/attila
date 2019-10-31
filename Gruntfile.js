@@ -21,16 +21,14 @@ module.exports = function(grunt) {
                     expand: true
                 }]
 	        },
-	        dist: {
+            stage: {
                 files: [{
 	                dest: './stage/attila/assets/font/',
 	                src: '*',
                     cwd: 'src/assets/font/',
                     expand: true
-                }]		        
-            },
-            stage: {
-                files: [{
+                },
+                {
 	                dest: './stage/attila/',
 	                src: ['**/*.hbs',
                         '!node_modules/**',
@@ -77,9 +75,8 @@ module.exports = function(grunt) {
         clean: {
             dev: ['dev'],
             stage: ['stage'],
-            dist: ['dist'],
-            all: ['dev', 'stage', 'dist'],
-            zip: ['assets']
+            build: ['build'],
+            all: ['dev', 'stage', 'build']
         },
         sass: {
             dev: {
@@ -91,7 +88,7 @@ module.exports = function(grunt) {
                     './stage/attila/assets/<%=  config.cssTargetDir %>/style.css': '<%=  config.cssSrcDir %>/style.scss'
                 }
             },
-            dist: {
+            stage: {
                 options: {
                     outputStyle: 'compressed'
                 },
@@ -110,7 +107,7 @@ module.exports = function(grunt) {
             dev: {
                 src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             },
-            dist: {
+            stage: {
                 src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             }
         },
@@ -129,30 +126,29 @@ module.exports = function(grunt) {
             }
         },
         zip: {
-            dist: {
+            build: {
               src: [
-                '**',
+                '**/stage/',
                 '!node_modules',
                 '!node_modules/**',
                 '!src',
                 '!src/**',
-                '!dist',
-                '!dist/**',
+                '!build',
+                '!build/**',
                 '!.git',
                 '!.gitignore',
                 '!Gruntfile.js',
                 '!package-lock.json'
               ],
-              dest: `../dist/${require('./package.json').name}.zip`
+              dest: `./build/${require('./package.json').name}.zip`
             }
         }
     });
 
     grunt.registerTask('stage', [
         'clean:all',
-        'sass:dist',
-        'postcss:dist',
-        'copy:dist',
+        'sass:stage',
+        'postcss:stage',
         'copy:stage',
         'uglify'
     ]);
@@ -163,10 +159,8 @@ module.exports = function(grunt) {
         'uglify',
         'watch'
     ]);
-    grunt.registerTask('stagezip', [
+    grunt.registerTask('build', [
         'stage',
-        'copy:zip',
-        'zip',
-        'clean:zip'
+        'zip'
     ]);
 };
