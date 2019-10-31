@@ -56,7 +56,7 @@ npm install
 grunt stage
 ```
 
-This step create an unarchived version of the theme under 'stage/attila'. The softlink to which could be created under ghost installation directory 'ghost/content/theme' for developement and testing purposes.
+This step create an unarchived version of the theme under `stage/attila`. The softlink to which could be created under ghost installation directory `ghost/content/theme` for developement and testing purposes.
 
 
 4. Build Project
@@ -65,7 +65,7 @@ grunt build
 ```
 
 5. Deploy 
-Upload zip created in `Step 4` using Ghost admin panel under 'Settings/Design/Upload a theme'
+Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
 ## Copyright & License
 
