@@ -1,4 +1,4 @@
-module.exports = function(grunt) {
+module.exports = function (grunt) {
     'use strict';
     require('load-grunt-tasks')(grunt, {
         pattern: ['grunt-*']
@@ -13,24 +13,24 @@ module.exports = function(grunt) {
             'jsTargetDir': 'js'
         },
         copy: {
-	        dev: {
+            dev: {
                 files: [{
-	                dest: './stage/attila/assets/font/',
-	                src: '*',
+                    dest: './stage/attila/assets/font/',
+                    src: '*',
                     cwd: 'src/assets/font/',
                     expand: true
                 }]
-	        },
+            },
             stage: {
                 files: [{
-	                dest: './stage/attila/assets/font/',
-	                src: '*',
+                    dest: './stage/attila/assets/font/',
+                    src: '*',
                     cwd: 'src/assets/font/',
                     expand: true
                 },
                 {
-	                dest: './stage/attila/',
-	                src: ['**/*.hbs',
+                    dest: './stage/attila/',
+                    src: ['**/*.hbs',
                         '!node_modules/**',
                         '!assets',
                         '!src/',
@@ -46,7 +46,7 @@ module.exports = function(grunt) {
                     expand: true
                 },
                 {
-	                dest: './stage/attila/',
+                    dest: './stage/attila/',
                     src: ['**/*.json',
                         '!node_modules/**',
                         '!assets',
@@ -61,7 +61,7 @@ module.exports = function(grunt) {
                         '!package-lock.json'],
                     cwd: 'src/',
                     expand: true
-                }]	
+                }]
             },
             zip: {
                 files: [{
@@ -111,36 +111,40 @@ module.exports = function(grunt) {
                 src: './stage/attila/assets/<%=  config.cssTargetDir %>/*.css'
             }
         },
-		uglify: {
-			js: {
-				files: {
-                    './stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js','<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
+        uglify: {
+            js: {
+                files: {
+                    './stage/attila/assets/<%=  config.jsTargetDir %>/vendor.js': ['<%=  config.jsSrcDir %>/libs/jquery-*.js', '<%=  config.jsSrcDir %>/libs/wordcloud2.js'],
                     './stage/attila/assets/<%=  config.jsTargetDir %>/script.js': ['<%=  config.jsSrcDir %>/**/*.js'],
-				}
-			}
-		},
+                }
+            }
+        },
         watch: {
             css: {
                 files: '<%=  config.cssSrcDir %>/**/*.scss',
-                tasks: ['sass:dev','copy:dev','postcss:dev']
+                tasks: ['sass:dev', 'copy:dev', 'postcss:dev']
             }
         },
         zip: {
             build: {
-              src: [
-                '**/stage/',
-                '!node_modules',
-                '!node_modules/**',
-                '!src',
-                '!src/**',
-                '!build',
-                '!build/**',
-                '!.git',
-                '!.gitignore',
-                '!Gruntfile.js',
-                '!package-lock.json'
-              ],
-              dest: `./build/${require('./package.json').name}.zip`
+                cwd: 'stage/',
+                src: [
+                    '**',
+                    '!node_modules',
+                    '!node_modules/**',
+                    '!src',
+                    '!src/**',
+                    '!build',
+                    '!build/**',
+                    '!.git',
+                    '!.gitignore',
+                    '!Gruntfile.js',
+                    '!package-lock.json',
+                    '!README.md',
+                    '!package.json',
+                    '!LICENSE'
+                ],
+                dest: `./build/${require('./package.json').name}.zip`
             }
         }
     });
