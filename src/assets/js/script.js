@@ -143,8 +143,8 @@ jQuery(function($) {
 		});
 	}
 
-	$('#blog-header').removeClass('hide-posts');
-	if(window.location.pathname !== '/blogs/technology/'){
-		$('#blog-header').addClass('hide-posts');
+	$('#blog-header').addClass('hide-posts');
+	if(window.location.pathname === '/blogs/technology/' || window.location.pathname.includes('/blogs/technology/page/')){
+		$('#blog-header').removeClass('hide-posts');
 	}
 });
