@@ -54,14 +54,7 @@ module.exports = function (grunt) {
                         '!node_modules/**',
                         '!assets',
                         '!src/',
-                        '!assets/**',
-                        '!.git',
-                        '!.gitignore',
-                        '!Gruntfile.js',
-                        '!README.md',
-                        '!package.json',
-                        '!LICENSE',
-                        '!package-lock.json'],
+                        '!assets/**'],
                     cwd: '',
                     expand: true
                 }]
