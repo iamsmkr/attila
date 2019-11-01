@@ -34,20 +34,23 @@ module.exports = function (grunt) {
                         '!node_modules/**',
                         '!assets',
                         '!src/',
-                        '!assets/**',
-                        '!.git',
-                        '!.gitignore',
-                        '!Gruntfile.js',
-                        '!README.md',
-                        '!package.json',
-                        '!LICENSE',
-                        '!package-lock.json'],
+                        '!assets/**'],
                     cwd: 'src/',
                     expand: true
                 },
                 {
                     dest: './stage/attila/',
                     src: ['**/*.json',
+                        '!node_modules/**',
+                        '!assets',
+                        '!src/',
+                        '!assets/**'],
+                    cwd: 'src/',
+                    expand: true
+                },
+                {
+                    dest: './stage/attila/',
+                    src: ['./package.json',
                         '!node_modules/**',
                         '!assets',
                         '!src/',
@@ -59,7 +62,7 @@ module.exports = function (grunt) {
                         '!package.json',
                         '!LICENSE',
                         '!package-lock.json'],
-                    cwd: 'src/',
+                    cwd: '',
                     expand: true
                 }]
             },
