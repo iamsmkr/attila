@@ -138,7 +138,8 @@ module.exports = function (grunt) {
                     '!package-lock.json',
                     '!README.md',
                     '!package.json',
-                    '!LICENSE'
+                    '!LICENSE',
+		    '!routes.yaml'
                 ],
                 dest: `./build/${require('./package.json').name}.zip`
             }
