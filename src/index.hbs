@@ -1,5 +1,5 @@
 {{!< default}}
-{{#get "posts"}}
+{{#get "posts" limit='all'}}
 	<header id="blog-header" {{#if @blog.cover_image}} class="has-cover"{{/if}} data-name="{{posts.length}}">
 		<div class="inner">
 			<nav id="navigation">
