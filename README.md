@@ -87,7 +87,7 @@ Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Up
 	    template: tags
 	```
 
-	where the first part is the url (/tags/) and the second part is the template which will be used(tags.hbs). You leave off the .hbs since ghost takes care of it.
+	Here, the first part is the url (/tags/) and the second part is the template which will be used(tags.hbs). You leave off the .hbs since ghost takes care of it.
 
 ## Copyright & License
 
