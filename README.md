@@ -73,21 +73,21 @@ Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Up
 
 ## Notes
 
-1. Ghost requires package.json to be a part of the build. It picks up the configurations required for your theme from the config object defined in package.json
+1. Ghost requires `package.json` as part of the build to pick up configurations required for your theme defined under `config` json object.
 	```
 	"config": {
-	    "posts_per_page": 10 // Number of posts shown per page in your blog
+	    "posts_per_page": 10 // Number of posts shown per page
 	}
 	```
 
-2. For adding any custom pages to your blog add a new route under routes: key in routes.yaml file.
+2. To add a custom page to your blog, add a new route under `routes:` key in `routes.yaml` file.
 	```
 	routes:
 	  /tags/:
 	    template: tags
 	```
 
-	Here, the first part is the url (/tags/) and the second part is the template which will be used(tags.hbs). You leave off the .hbs since ghost takes care of it.
+	Here, the first part is the url `/tags/` and the second part is the template which will be used `tags.hbs`. Ghost interprest `.hbs` by itself, hence mentioning `tags` it enough.
 
 ## Copyright & License
 
