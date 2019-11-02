@@ -71,23 +71,23 @@ This step creates a distribution zip.
 ### 5. Deploy 
 Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
-### Notes
+## Notes
 
 1. Ghost requires package.json to be a part of the build. It picks up the configurations required for your theme from the config object defined in package.json
-```
-"config": {
-    "posts_per_page": 10 // Number of posts shown per page in your blog
-}
-```
+	```
+	"config": {
+	    "posts_per_page": 10 // Number of posts shown per page in your blog
+	}
+	```
 
 2. For adding any custom pages to your blog add a new route under routes: key in routes.yaml file.
-```
-routes:
-  /tags/:
-    template: tags
-```
+	```
+	routes:
+	  /tags/:
+	    template: tags
+	```
 
-where the first part is the url (/tags/) and the second part is the template which will be used(tags.hbs). You leave off the .hbs since ghost takes care of it.
+	where the first part is the url (/tags/) and the second part is the template which will be used(tags.hbs). You leave off the .hbs since ghost takes care of it.
 
 ## Copyright & License
 
