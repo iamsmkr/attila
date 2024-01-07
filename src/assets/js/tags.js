@@ -9,7 +9,7 @@ if($canvas){
     // Get all tags data API
     wordCloudData = [];
     name_slug_map = {};
-    $.get('/blogs/technology/ghost/api/v2/content/tags/?include=count.posts&key=c3d14350df8cbf5125c295c67f').done(function (data){
+    $.get('/ghost/api/v2/content/tags/?include=count.posts&key=c3d14350df8cbf5125c295c67f').done(function (data){
         for(var i=0 ;i<data.tags.length;i++){
             var temp = [];
             temp.push(data.tags[i].name);

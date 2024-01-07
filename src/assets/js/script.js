@@ -144,7 +144,7 @@ jQuery(function($) {
 	}
 
 	$('#blog-header').addClass('hide-posts');
-	if(window.location.pathname === '/blogs/technology/' || window.location.pathname.includes('/blogs/technology/page/')){
+	if(window.location.pathname === '/' || window.location.pathname.includes('/page/')){
 		$('#blog-header').removeClass('hide-posts');
 	}
 });
