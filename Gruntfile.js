@@ -4,6 +4,8 @@ module.exports = function (grunt) {
         pattern: ['grunt-*']
     });
 
+    const sass = require('node-sass');
+
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         config: {
@@ -75,6 +77,10 @@ module.exports = function (grunt) {
             all: ['dev', 'stage', 'build']
         },
         sass: {
+            options: {
+                implementation: sass,
+                sourceMap: true
+            },
             dev: {
                 options: {
                     includePaths: ['<%= config.cssSrcDir %>'],
