@@ -545,6 +545,15 @@ img[src$="#full"] {
 	line-height: 1em;
 	text-decoration: none;
 }
+.profile-container {
+    background-color: #3498db;
+    width: 200px;
+    border: 1px solid #000;
+    margin-left: 100px;
+}
+.profile-img {
+    margin-top: 10px;
+}
 .home-template .blog-name {
 	font-size: 2.5em;
     font-family: unset;

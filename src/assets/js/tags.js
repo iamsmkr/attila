@@ -5,7 +5,7 @@ if($canvas){
     $canvas.width  = window.innerWidth;
     $canvas.height = window.innerHeight;
     document.body.scrollTop = 0;
-    document.body.style.overflow = 'hidden'; 
+    document.body.style.overflow = 'hidden';
     // Get all tags data API
     wordCloudData = [];
     name_slug_map = {};
@@ -17,8 +17,8 @@ if($canvas){
             name_slug_map[data.tags[i].name] = data.tags[i].slug;
             wordCloudData.push(temp);
         };
-        var options = { 
-            list : wordCloudData,      
+        var options = {
+            list : wordCloudData,
             weightFactor: function (size) {
                 return (size === 1) ? baseFont : 10 * size * 2;
             },

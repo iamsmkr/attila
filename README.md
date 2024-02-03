@@ -52,7 +52,7 @@ npm install -g grunt-cli
 ```
 npm install
 ```
-	
+
 ### 3. Stage/Test Project
 ```
 grunt stage
@@ -68,7 +68,7 @@ grunt build
 
 This step creates a distribution zip.
 
-### 5. Deploy 
+### 5. Deploy
 Upload zip created in `Step 4` using Ghost admin panel under `Settings/Design/Upload a theme`
 
 ## Notes
